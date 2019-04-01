@@ -1,0 +1,397 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a1ef853a860d6ec4b7a6a073496a505f",
+    "packages": [
+        {
+            "name": "dusank/knapsack",
+            "version": "10.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DusanKasan/Knapsack.git",
+                "reference": "cc29a0bbaadbfcb958b98aa4fd69a4ad7d173bba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DusanKasan/Knapsack/zipball/cc29a0bbaadbfcb958b98aa4fd69a4ad7d173bba",
+                "reference": "cc29a0bbaadbfcb958b98aa4fd69a4ad7d173bba",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "ciaranmcnulty/phpspec-typehintedmethods": "^1.0",
+                "henrikbjorn/phpspec-code-coverage": "^2.0",
+                "phpmd/phpmd": "^2.0",
+                "phpspec/phpspec": "^2.0",
+                "phpunit/phpunit": "^5.0",
+                "squizlabs/php_codesniffer": "^2.0",
+                "symfony/console": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/collection_functions.php",
+                    "src/utility_functions.php"
+                ],
+                "psr-4": {
+                    "DusanKasan\\Knapsack\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dusan Kasan",
+                    "email": "dusan@kasan.sk",
+                    "homepage": "http://kasan.sk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection library for PHP",
+            "homepage": "https://github.com/DusanKasan/Knapsack",
+            "keywords": [
+                "collections",
+                "map",
+                "reduce",
+                "sequences"
+            ],
+            "time": "2017-04-24T22:52:29+00:00"
+        },
+        {
+            "name": "nikic/fast-route",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/FastRoute.git",
+                "reference": "181d480e08d9476e61381e04a71b34dc0432e812"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/181d480e08d9476e61381e04a71b34dc0432e812",
+                "reference": "181d480e08d9476e61381e04a71b34dc0432e812",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FastRoute\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov",
+                    "email": "nikic@php.net"
+                }
+            ],
+            "description": "Fast request router for PHP",
+            "keywords": [
+                "router",
+                "routing"
+            ],
+            "time": "2018-02-13T20:26:39+00:00"
+        },
+        {
+            "name": "simplon/helper",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/simplon_helper.git",
+                "reference": "50b9078a5c2fb35a57e9cdcf48bf60142a8964ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/simplon_helper/zipball/50b9078a5c2fb35a57e9cdcf48bf60142a8964ee",
+                "reference": "50b9078a5c2fb35a57e9cdcf48bf60142a8964ee",
+                "shasum": ""
+            },
+            "require": {
+                "dusank/knapsack": "^10.0",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Simplon\\Helper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tino Ehrich",
+                    "email": "tino@bigpun.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "Helpers for recurring requirements",
+            "homepage": "https://github.com/fightbulc/simplon_helper",
+            "keywords": [
+                "casts",
+                "passwords",
+                "tokens"
+            ],
+            "time": "2017-08-16T11:03:50+00:00"
+        },
+        {
+            "name": "simplon/mysql",
+            "version": "2.2.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/simplon_mysql.git",
+                "reference": "21da390cb2b3846a2407a410486b4642501e3098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/simplon_mysql/zipball/21da390cb2b3846a2407a410486b4642501e3098",
+                "reference": "21da390cb2b3846a2407a410486b4642501e3098",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=7.1",
+                "simplon/helper": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Simplon\\Mysql\\": "src/",
+                    "Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tino Ehrich",
+                    "email": "tino@bigpun.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "Simplon MySQL Library",
+            "homepage": "https://github.com/fightbulc/simplon_mysql",
+            "keywords": [
+                "db",
+                "manager",
+                "mysql",
+                "pdo"
+            ],
+            "time": "2017-11-22T10:17:02+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "82ebae02209c21113908c229e9883c419720738a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
+                "reference": "82ebae02209c21113908c229e9883c419720738a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.11-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "backendtea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2019-02-06T07:57:58+00:00"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
+                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.11-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2019-02-06T07:57:58+00:00"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v2.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "ed9c49220e09bfaeb1ba4d48077c08a7b09908dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ed9c49220e09bfaeb1ba4d48077c08a7b09908dd",
+                "reference": "ed9c49220e09bfaeb1ba4d48077c08a7b09908dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "symfony/polyfill-ctype": "^1.8",
+                "symfony/polyfill-mbstring": "^1.3"
+            },
+            "require-dev": {
+                "psr/container": "^1.0",
+                "symfony/debug": "^2.7",
+                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "https://twig.symfony.com/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2019-03-23T14:28:58+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -1,0 +1,94 @@
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">TaskManager</a>
+    {% if isAdmin %}
+        <span>Вы вошли как администратор</span>
+        <button type="button" class="logout btn btn-outline-success my-2 my-sm-0">
+            Выход
+        </button>
+    {% else %}
+        <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+                data-target="#loginModal">
+            Войти
+        </button>
+    {% endif %}
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Вход для администратора</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="login-form" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <input type="text" class="form-control" id="loginValidation" placeholder="Логин"
+                                       value="" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <input type="password" class="form-control" id="passwordValidation" placeholder="Пароль"
+                                       value="" required>
+                            </div>
+                        </div>
+                        <div id="loginError" style="display: none" class="alert alert-danger" role="alert">
+                            Авторизация провалилась!
+                        </div>
+                        <div class="text-sm-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <button type="submit" id="login-proceed" class="btn btn-primary">Войти</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+		(function () {
+			'use strict';
+
+			window.addEventListener('load', function () {
+				$('.logout').on('click', function () {
+					$.ajax({
+						method: "GET",
+						url: "/admin/logout",
+					}).done(() => {
+						location.reload()
+					})
+				})
+
+				var loginForm = document.getElementsByClassName('login-form')
+				var $loginForm = $(loginForm)
+
+				$loginForm.on('submit', function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+					if ($loginForm[0].checkValidity() !== false) {
+						$.ajax({
+							method: "POST",
+							url: "/admin/login",
+							data: {
+								login: $loginForm.find('#loginValidation')[0].value,
+								password: $loginForm.find('#passwordValidation')[0].value
+							},
+						}).done(() => {
+							$('#loginError:first').hide()
+							location.reload()
+						}).fail(() => {
+							$('#loginError:first').show()
+						})
+					}
+
+					$loginForm.addClass('was-validated');
+				})
+			}, false);
+		})();
+    </script>
+
+</nav>

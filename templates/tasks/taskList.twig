@@ -1,0 +1,200 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"><a href="/?offset={{ offset }}&order=id&direct={% if direct =='desc' and order=='id' %}asc{% else %}desc{% endif %}"># {% if order == 'id' %}{% if direct =='desc' %}↑{% else %}↓{% endif %}{% endif %}</a></th>
+        <th scope="col"><a href="/?offset={{ offset }}&order=email&direct={% if direct =='desc' and order=='email' %}asc{% else %}desc{% endif %}">Email {% if order == 'email' %}{% if direct=='desc' %}↓{% else %}↑{% endif %}{% endif %}</a></th>
+        <th scope="col"><a href="/?offset={{ offset }}&order=user_name&direct={% if direct =='desc' and order=='user_name' %}asc{% else %}desc{% endif %}">Имя пользователя {% if order == 'user_name' %}{% if direct=='desc' %}↓{% else %}↑{% endif %}{% endif %}</a></th>
+        <th scope="col"><a href="/?offset={{ offset }}&order=task_status&direct={% if direct =='desc' and order=='task_status' %}asc{% else %}desc{% endif %}">Статус {% if order == 'task_status' %}{% if direct=='desc' %}↓{% else %}↑{% endif %}{% endif %}</a></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for task in tasks %}
+        {% set taskId = 'task-' ~ task.id %}
+        <tr>
+            <th scope="row">{{ task.id }}</th>
+            <td id="email-task-{{ task.id }}">{{ task.email }}</td>
+            <td id="user-name-task-{{ task.id }}">{{ task.user_name }}</td>
+            <td>{% if task.task_status == 'progress' %}Выполняется{% else %}Завершено{% endif %}</td>
+            <td class="text-sm-right">
+                {% if isAdmin and task.task_status != 'finished' %}
+                    <button type="button" class="btn edit-task btn-danger" data-toggle="modal"
+                            data-target="#task-modal" data-task-id="{{ task.id }}">Редактировать
+                    </button>
+                    <button type="button" data-task-id="{{ task.id }}" class="btn btn-success finish">Завершить
+                    </button>
+                {% endif %}
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{ taskId }}"
+                        aria-expanded="false" aria-controls="{{ taskId }}">
+                    Посмотреть
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border-top: none">
+                <div class="collapse" id="{{ taskId }}">
+                    <div class="card card-body" id="text-task-{{ task.id }}">
+                        {{ task.task_text }}
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr/>
+{% if pagination.pages > 1 %}
+    <nav aria-label="Page navigation tasks">
+        <ul class="pagination">
+            {% if pagination.active - 1 >= 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="/?{{ pagination.query }}offset={{ pagination.active - 1 }}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for index in 0..pagination.pages - 1 %}
+                {% set dIndex = index + 1 %}
+                <li class="page-item {% if pagination.active == index %} active {% endif %}">
+                    <a class="page-link"
+                       href="/?{{ pagination.query }}{% if index %}offset={{ index }}{% endif %}">{{ dIndex }}</a></li>
+            {% endfor %}
+            {% if pagination.active + 1 < pagination.pages %}
+                <li class="page-item">
+                    <a class="page-link" href="/?{{ pagination.query }}offset={{ pagination.active + 1 }}"
+                       aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+
+<div class="text-sm-right">
+    <button type="button" data-toggle="modal"
+            data-target="#task-modal" class="btn add-task btn-secondary">Добавить задачу
+    </button>
+</div>
+
+<div class="modal task-modal fade" id="task-modal" tabindex="-1" role="dialog" aria-labelledby="TaskModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+<script>
+	(function () {
+		'use strict';
+
+		window.addEventListener('load', function () {
+
+			function createModalBody(params) {
+				return `
+        	<div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">${params.action === 'add' ? 'Добавление' : 'Редактирование'} задачи</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="task-form" data-task-id="${params.id}" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Email"
+                                   value="${params.email}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control" id="user-name" placeholder="Имя"
+                                   value="${params.user_name}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <textarea class="form-control" rows="3" id="task-text" placeholder="Текст задачи"
+                                      required>${params.task_text.trim()}</textarea>
+                        </div>
+                    </div>
+
+                    <div id="taskError" style="display: none" class="alert alert-danger" role="alert">
+                        Серверная ошибка!
+                    </div>
+
+                    <div class="text-sm-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button type="submit" id="task-proceed" class="btn btn-primary">Подтвердить</button>
+                    </div>
+                </form>
+            </div>
+        	`
+			}
+
+			$('.finish').on('click', function(e) {
+				var id = $(e.target).data('task-id')
+				$.ajax({
+                    method: 'GET',
+					url: '/admin/finish/' + id,
+                }).done(() => {
+                	location.reload()
+                })
+            })
+
+			$('.add-task').on('click', function (e) {
+				$('#task-modal .modal-content').html(createModalBody({
+					action: 'add',
+					email: '',
+					user_name: '',
+					task_text: '',
+					id: 0,
+				}))
+			})
+
+			$('.edit-task').on('click', function (e) {
+				var id = $(e.target).data('task-id')
+
+				$('#task-modal .modal-content').html(createModalBody({
+					action: 'edit',
+					email: $('#email-task-' + id).text(),
+					user_name: $('#user-name-task-' + id).text(),
+					task_text: $('#text-task-' + id).text(),
+					id: id,
+				}))
+			})
+
+			$('.task-modal').on('submit', '.task-form', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				var $taskForm = $(e.target)
+				var id = $(e.target).data('task-id')
+
+				if ($taskForm[0].checkValidity() !== false) {
+					$.ajax({
+						method: "POST",
+						url: id ? '/admin/update/' + id : '/newTask',
+						data: {
+							email: $taskForm.find('#email')[0].value,
+							user_name: $taskForm.find('#user-name')[0].value,
+							task_text: $taskForm.find('#task-text')[0].value,
+						},
+					}).done(() => {
+						$('#taskError:first').hide()
+						location.reload()
+					}).fail(() => {
+						$('#taskError:first').show()
+					})
+				}
+
+				$loginForm.addClass('was-validated');
+			})
+
+		}, false);
+	})();
+</script>

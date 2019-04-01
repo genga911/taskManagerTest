@@ -1,0 +1,14 @@
+{
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "twig/twig": "^2.0",
+        "simplon/mysql": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Models\\": "./models",
+            "Controllers\\": "./controllers",
+            "Tools\\": "./tools"
+        }
+    }
+}
